@@ -27,7 +27,7 @@
         android:id="@+id/profileFragment"
         android:name="com.example.netflixapp.ProfileFragment"
         android:label="fragment_proflix"
-        tools:layout="@layout/fragment_proflix" />
+        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.netflixapp.FavoriteFragment"
