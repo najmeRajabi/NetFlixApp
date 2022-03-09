@@ -15,15 +15,15 @@ object Videos{
         Video("The Colony",false,R.drawable.colony),
         Video("Warning",false,R.drawable.warning),
         Video("fast & furious9",true,R.drawable.f9),
-        Video("land",false,R.drawable.land),
-        Video("13",false,R.drawable.f9),
-        Video("14",false,R.drawable.f9),
-        Video("15",false,R.drawable.f9),
-        Video("16",false,R.drawable.f9),
-        Video("17",false,R.drawable.f9),
-        Video("18",false,R.drawable.f9),
-        Video("19",false,R.drawable.f9),
-        Video("20",false,R.drawable.f9),
-        Video("21",false,R.drawable.f9)
+        Video("land",false,R.drawable.land)
+//        Video("13",false,R.drawable.f9),
+//        Video("14",false,R.drawable.f9),
+//        Video("15",false,R.drawable.f9),
+//        Video("16",false,R.drawable.f9),
+//        Video("17",false,R.drawable.f9),
+//        Video("18",false,R.drawable.f9),
+//        Video("19",false,R.drawable.f9),
+//        Video("20",false,R.drawable.f9),
+//        Video("21",false,R.drawable.f9)
     )
 }

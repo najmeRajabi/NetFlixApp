@@ -29,12 +29,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/video_Image"
         app:layout_constraintBottom_toBottomOf="parent"/>
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/imv_fav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
-        android:background="#22cccccc"
         android:src="@drawable/ic_baseline_favorite_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/txv_video_image"
