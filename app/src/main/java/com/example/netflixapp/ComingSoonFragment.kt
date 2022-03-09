@@ -47,7 +47,8 @@ class ComingSoonFragment : Fragment() {
             binding.listVideoCom2 , binding.listVideoCom3)
 
         for (i in 0 until  boxList.size){
-            boxList[i].imvFav.setOnClickListener { shareDescription(Videos.comingSoonVideos[i].description.toString()) }
+            boxList[i].imvFav.setOnClickListener {
+                shareDescription(Videos.comingSoonVideos[i].description.toString()) }
         }
     }
 
