@@ -1,14 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/ll_set_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/ic_baseline_account_circle_24" />
+
+            <EditText
+                android:id="@+id/name_edt"
+                style="@style/edt_style"
+                android:hint="نام و نام خانوادگی:" />
+
+            <EditText
+                android:id="@+id/email_edt"
+                style="@style/edt_style"
+                android:hint="آدرس ایمیل:" />
+
+            <EditText
+                android:id="@+id/username_edt"
+                style="@style/edt_style"
+                android:hint="نام کاربری:" />
+
+            <EditText
+                android:id="@+id/phone_edt"
+                style="@style/edt_style"
+                android:hint="شماره تلفن:"
+                android:inputType="number" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/register_btn"
+                style="@style/edt_style"
+                android:text=" register "
+                app:cornerRadius="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_show_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/ic_baseline_account_circle_24"
+                android:tint="@color/purple_200" />
+
+            <TextView
+                android:id="@+id/name_txv"
+                style="@style/edt_style.txv"
+                tools:text="نام و نام خانوادگی:" />
+            <TextView
+                android:id="@+id/username_txv"
+                style="@style/edt_style.txv"
+                android:visibility="gone"
+                tools:text="نام کاربری:" />
+            <TextView
+                android:id="@+id/email_txv"
+                style="@style/edt_style.txv"
+                tools:text="ایمیل:" />
+            <TextView
+                android:id="@+id/phone_txv"
+                style="@style/edt_style.txv"
+                android:visibility="gone"
+                tools:text="شماره تلفن:" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>
