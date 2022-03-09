@@ -47,6 +47,8 @@ class HomeFragment : Fragment() {
             boxList[i].videoImage.setImageResource(R.drawable.f9 )
             if (Videos.videos[i].isFave){
                 boxList[i].imvFav.setImageResource(R.drawable.ic_baseline_favorite_red)
+            }else{
+                boxList[i].imvFav.setImageResource(R.drawable.ic_baseline_favorite_24)
             }
         }
 
