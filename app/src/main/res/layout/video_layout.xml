@@ -23,7 +23,7 @@
         tools:text="textView"
         android:textSize="13sp"
         android:gravity="center"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:padding="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
