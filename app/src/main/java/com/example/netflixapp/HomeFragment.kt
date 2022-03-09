@@ -5,7 +5,9 @@ import android.annotation.SuppressLint
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
@@ -14,6 +16,9 @@ import com.example.netflixapp.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
+
+
+//    var boxList = arrayListOf<>()
 
     private lateinit var binding: FragmentHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +51,22 @@ class HomeFragment : Fragment() {
         }
 
 
+
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val boxList = arrayListOf(binding.listVideo1,binding.listVideo2,
+            binding.listVideo3,binding.listVideo4,binding.listVideo5,binding.listVideo6,
+            binding.listVideo7,binding.listVideo8,binding.listVideo9,
+            binding.listVideo10,binding.listVideo11,binding.listVideo12)
+
+        for (index in 0 until boxList.size){
+            boxList[index].imvFav.setOnClickListener { setFavorite(index , boxList[index].imvFav)}
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -74,6 +94,16 @@ class HomeFragment : Fragment() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun setFavorite(id:Int ,favImage:ImageView){
+        if (Videos.videos[id].isFave){
+            favImage.setImageResource(R.drawable.ic_baseline_favorite_24)
+            Videos.videos[id].isFave = false
+        }else{
+            favImage.setImageResource(R.drawable.ic_baseline_favorite_red)
+            Videos.videos[id].isFave = true
         }
     }
 }
