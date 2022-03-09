@@ -1,6 +1,6 @@
 package com.example.netflixapp
 
-data class  Video(val name: String , var isFave:Boolean , val image:Int) {
+data class  Video(val name: String , var isFave:Boolean , val image:Int , val description:String?=null) {
 }
 object Videos{
     val videos = arrayListOf<Video>(
@@ -19,4 +19,9 @@ object Videos{
 
     )
 
+    val comingSoonVideos = arrayListOf(
+        Video("1",false,R.drawable.dune , "coming soon"),
+        Video("2",false,R.drawable.dune , "coming soon"),
+        Video("3",false,R.drawable.dune , "coming soon"),
+    )
 }
