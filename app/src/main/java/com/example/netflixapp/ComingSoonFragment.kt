@@ -1,6 +1,9 @@
 package com.example.netflixapp
 
+import android.app.Notification
+import android.content.Intent
 import android.os.Bundle
+import android.view.ActionMode
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,8 +37,29 @@ class ComingSoonFragment : Fragment() {
             boxList[i].imvFav.setImageResource(R.drawable.ic_baseline_share_24)
             explainList[i].text = Videos.comingSoonVideos[i].description
         }
-        // Inflate the layout for this fragment
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val  boxList= arrayListOf(binding.listVideoCom1,
+            binding.listVideoCom2 , binding.listVideoCom3)
+
+        for (i in 0 until  boxList.size){
+            boxList[i].imvFav.setOnClickListener { shareDescription(Videos.comingSoonVideos[i].description.toString()) }
+        }
+    }
+
+    private fun shareDescription(message :String){
+        val intent = Intent().apply {
+            action=Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT,message)
+            type="text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(intent,null)
+        startActivity(shareIntent)
     }
 
 
