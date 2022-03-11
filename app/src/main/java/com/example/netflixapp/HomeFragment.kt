@@ -2,6 +2,7 @@ package com.example.netflixapp
 
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.*
@@ -67,7 +68,13 @@ class HomeFragment : Fragment() {
             binding.listVideo10,binding.listVideo11,binding.listVideo12)
 
         for (index in 0 until boxList.size){
-            boxList[index].imvFav.setOnClickListener { setFavorite(index , boxList[index].imvFav)}
+            boxList[index].imvFav.setOnClickListener {
+                if (checkAccount()) {
+                    setFavorite(index, boxList[index].imvFav)
+                }else{
+                    Toast.makeText(activity,"you're not registered!",Toast.LENGTH_SHORT).show()
+                }
+                }
         }
     }
 
@@ -107,5 +114,10 @@ class HomeFragment : Fragment() {
             favImage.setImageResource(R.drawable.ic_baseline_favorite_red)
             Videos.videos[id].isFave = true
         }
+    }
+
+    fun checkAccount():Boolean{
+        val sharedPreferences = activity?.getSharedPreferences("profileInfo" , Context.MODE_PRIVATE)
+        return !sharedPreferences?.getString(NAME,"").isNullOrBlank()
     }
 }
