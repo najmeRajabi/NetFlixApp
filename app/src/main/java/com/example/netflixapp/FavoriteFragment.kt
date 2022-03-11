@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.viewbinding.ViewBinding
@@ -42,17 +43,25 @@ class FavoriteFragment : Fragment() {
         binding.listVideoFav9 ,binding.listVideoFav10,binding.listVideoFav11,
         binding.listVideoFav12
         )
-        if (favorites.isNullOrEmpty()){
-            binding.emptyImv.visibility = View.VISIBLE
-        }else {
+        val checkAccount = HomeFragment().checkAccount()
 
-            for (i in 0 until favorites.size) {
-                boxList[i].txvVideoImage.text = favorites[i].name
-                boxList[i].videoImage.setImageResource(favorites[1].image)
-                if (favorites[i].isFave) {
-                    boxList[i].imvFav.setImageResource(R.drawable.ic_baseline_favorite_red)
+        when {
+            checkAccount -> {
+                Toast.makeText(activity,"you're not registered!", Toast.LENGTH_SHORT).show()
+            }
+            favorites.isNullOrEmpty() -> {
+                binding.emptyImv.visibility = View.VISIBLE
+            }
+            else -> {
+
+                for (i in 0 until favorites.size) {
+                    boxList[i].txvVideoImage.text = favorites[i].name
+                    boxList[i].videoImage.setImageResource(favorites[1].image)
+                    if (favorites[i].isFave) {
+                        boxList[i].imvFav.setImageResource(R.drawable.ic_baseline_favorite_red)
+                    }
+
                 }
-
             }
         }
 
