@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.netflixapp.databinding.FragmentComingSoonBinding
 
 
@@ -45,10 +46,16 @@ class ComingSoonFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val  boxList= arrayListOf(binding.listVideoCom1,
             binding.listVideoCom2 , binding.listVideoCom3)
+        val checkAccount = HomeFragment().checkAccount()
 
         for (i in 0 until  boxList.size){
             boxList[i].imvFav.setOnClickListener {
-                shareDescription(Videos.comingSoonVideos[i].description.toString()) }
+                if (checkAccount) {
+                    shareDescription(Videos.comingSoonVideos[i].description.toString())
+                }else{
+                    Toast.makeText(activity,"you're not registered!", Toast.LENGTH_SHORT).show()
+                }
+                 }
         }
     }
 
