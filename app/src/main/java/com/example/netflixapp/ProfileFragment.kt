@@ -11,10 +11,10 @@ import android.view.ViewGroup
 import com.example.netflixapp.databinding.FragmentProfileBinding
 
 
-const val NAME :String = ""
-const val USERNAME :String = ""
-const val EMAIL :String = ""
-const val PHONE :String = ""
+const val NAME :String = "name"
+const val USERNAME :String = "username"
+const val EMAIL :String = "email"
+const val PHONE :String = "phone"
 
 class ProfileFragment : Fragment() {
 
@@ -61,8 +61,8 @@ class ProfileFragment : Fragment() {
         val sharedPreferences = activity?.getSharedPreferences("profileInfo" , Context.MODE_PRIVATE)
         binding.nameTxv.text = sharedPreferences?.getString(NAME,"name")
         binding.emailTxv.text = sharedPreferences?.getString(EMAIL,"email")
-        val username = sharedPreferences?.getString(USERNAME,"username")
-        val phone = sharedPreferences?.getString(PHONE,"phone")
+        val username = sharedPreferences?.getString(USERNAME,"")
+        val phone = sharedPreferences?.getString(PHONE,"")
         if (!username.isNullOrBlank()){
             binding.usernameTxv.visibility =View.VISIBLE
             binding.usernameTxv.text = username
