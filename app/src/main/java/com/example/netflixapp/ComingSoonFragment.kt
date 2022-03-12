@@ -1,6 +1,7 @@
 package com.example.netflixapp
 
 import android.app.Notification
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.ActionMode
@@ -46,11 +47,11 @@ class ComingSoonFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val  boxList= arrayListOf(binding.listVideoCom1,
             binding.listVideoCom2 , binding.listVideoCom3)
-        val checkAccount = HomeFragment().checkAccount()
+
 
         for (i in 0 until  boxList.size){
             boxList[i].imvFav.setOnClickListener {
-                if (checkAccount) {
+                if (checkAccount()) {
                     shareDescription(Videos.comingSoonVideos[i].description.toString())
                 }else{
                     Toast.makeText(activity,"you're not registered!", Toast.LENGTH_SHORT).show()
@@ -68,6 +69,11 @@ class ComingSoonFragment : Fragment() {
 
         val shareIntent = Intent.createChooser(intent,null)
         startActivity(shareIntent)
+    }
+
+    fun checkAccount():Boolean{
+        val sharedPreferences = activity?.getSharedPreferences("profileInfo" , Context.MODE_PRIVATE)
+        return !sharedPreferences?.getString(NAME,"").isNullOrBlank()
     }
 
 
