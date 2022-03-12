@@ -1,5 +1,6 @@
 package com.example.netflixapp
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Layout
 import androidx.fragment.app.Fragment
@@ -43,10 +44,9 @@ class FavoriteFragment : Fragment() {
         binding.listVideoFav9 ,binding.listVideoFav10,binding.listVideoFav11,
         binding.listVideoFav12
         )
-        val checkAccount = HomeFragment().checkAccount()
 
         when {
-            checkAccount -> {
+            !checkAccount() -> {
                 Toast.makeText(activity,"you're not registered!", Toast.LENGTH_SHORT).show()
             }
             favorites.isNullOrEmpty() -> {
@@ -67,6 +67,11 @@ class FavoriteFragment : Fragment() {
 
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    fun checkAccount():Boolean{
+        val sharedPreferences = activity?.getSharedPreferences("profileInfo" , Context.MODE_PRIVATE)
+        return !sharedPreferences?.getString(NAME,"").isNullOrBlank()
     }
 
 
