@@ -56,7 +56,7 @@ class FavoriteFragment : Fragment() {
 
                 for (i in 0 until favorites.size) {
                     boxList[i].txvVideoImage.text = favorites[i].name
-                    boxList[i].videoImage.setImageResource(favorites[1].image)
+                    boxList[i].imvVideo.setImageResource(favorites[1].image)
                     if (favorites[i].isFave) {
                         boxList[i].imvFav.setImageResource(R.drawable.ic_baseline_favorite_red)
                     }

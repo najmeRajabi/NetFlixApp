@@ -34,7 +34,7 @@ class ComingSoonFragment : Fragment() {
         binding.description2Txv , binding.description3Txv)
 
         for ( i in 0 until Videos.comingSoonVideos.size){
-            boxList[i].videoImage.setImageResource(R.drawable.film2021)
+            boxList[i].imvVideo.setImageResource(R.drawable.film2021)
             boxList[i].txvVideoImage.text = Videos.comingSoonVideos[i].name
             boxList[i].imvFav.setImageResource(R.drawable.ic_baseline_share_24)
             explainList[i].text = Videos.comingSoonVideos[i].description

@@ -5,12 +5,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 
 import com.example.netflixapp.databinding.FragmentHomeBinding
 
@@ -45,7 +47,7 @@ class HomeFragment : Fragment() {
         for (i in 0 until boxList.size){
             boxList[i].txvVideoImage.text = Videos.videos[i].name
 //            boxList[i].videoImage.setImageResource(Videos.videos[i].image)
-            boxList[i].videoImage.setImageResource(R.drawable.f9 )
+            boxList[i].imvVideo.setImageResource(R.drawable.f9 )
             if (Videos.videos[i].isFave){
                 boxList[i].imvFav.setImageResource(R.drawable.ic_baseline_favorite_red)
             }else{
@@ -62,6 +64,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViews()
         val boxList = arrayListOf(binding.listVideo1,binding.listVideo2,
             binding.listVideo3,binding.listVideo4,binding.listVideo5,binding.listVideo6,
             binding.listVideo7,binding.listVideo8,binding.listVideo9,
@@ -76,6 +79,17 @@ class HomeFragment : Fragment() {
                 }
                 }
         }
+    }
+
+    private fun initViews() {
+        val adapter = VideoAdapter(arrayListOf()){
+            video ->
+            Toast.makeText(requireContext(),"fave",Toast.LENGTH_SHORT).show()
+        }
+        adapter.submitList(Videos.videos)
+        binding.recyclerHome.apply {
+            this.adapter = adapter
+        layoutManager = GridLayoutManager(requireContext(),3)}
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
