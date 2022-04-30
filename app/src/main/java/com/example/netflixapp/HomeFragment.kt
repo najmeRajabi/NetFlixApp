@@ -84,7 +84,6 @@ class HomeFragment : Fragment() {
     private fun initViews() {
         val adapter = VideoAdapter(arrayListOf()){
             video ->
-            Toast.makeText(requireContext(),"fave",Toast.LENGTH_SHORT).show()
         }
         adapter.submitList(Videos.videos)
         binding.recyclerHome.apply {

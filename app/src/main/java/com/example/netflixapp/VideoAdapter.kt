@@ -55,8 +55,21 @@ class VideoAdapter(var dataSet: ArrayList<Video> ,
                 imvFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
             }
 
-            imvFavorite.setOnClickListener { clickHandler }
+            imvFavorite.setOnClickListener { clickHandler(video)
+                setFavorite(video,imvFavorite)
+            }
 
         }
+
+        fun setFavorite(video: Video ,favImage:ImageView){
+            if (video.isFave){
+                favImage.setImageResource(R.drawable.ic_baseline_favorite_24)
+                video.isFave = false
+            }else{
+                favImage.setImageResource(R.drawable.ic_baseline_favorite_red)
+                video.isFave = true
+            }
+        }
     }
+
 }
