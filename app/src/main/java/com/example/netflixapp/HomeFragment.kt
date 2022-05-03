@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -43,26 +44,12 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
-//        val boxList = arrayListOf(binding.listVideo1,binding.listVideo2,
-//            binding.listVideo3,binding.listVideo4,binding.listVideo5,binding.listVideo6,
-//            binding.listVideo7,binding.listVideo8,binding.listVideo9,
-//            binding.listVideo10,binding.listVideo11,binding.listVideo12)
-//
-//        for (index in 0 until boxList.size){
-//            boxList[index].imvFav.setOnClickListener {
-//                if (checkAccount()) {
-//                    setFavorite(index, boxList[index].imvFav)
-//                }else{
-//                    Toast.makeText(activity,"you're not registered!",Toast.LENGTH_SHORT).show()
-//                }
-//                }
-//        }
     }
 
     private fun initViews() {
         val adapter = VideoAdapter(arrayListOf()){
             video ->
-            checkAccount()
+            checkRegistered()
         }
         adapter.submitList(Videos.videos)
         binding.recyclerHome.apply {
@@ -101,5 +88,30 @@ class HomeFragment : Fragment() {
     fun checkAccount():Boolean{
         val sharedPreferences = activity?.getSharedPreferences("profileInfo" , Context.MODE_PRIVATE)
         return !sharedPreferences?.getString(NAME,"").isNullOrBlank()
+    }
+    fun checkRegistered(): Boolean{
+        return if (!checkAccount()){
+//            Toast.makeText(requireContext(),"not registered !!",Toast.LENGTH_SHORT).show()
+                showDefaultDialog()
+            false
+        }else
+            true
+    }
+
+    private fun showDefaultDialog() {
+        val alertDialog = AlertDialog.Builder(requireContext())
+
+        alertDialog.apply {
+            setTitle("not registered !!")
+            setMessage("you're not registered yet. please first register")
+            setPositiveButton("register") { _, _ ->
+                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+            }
+            setNegativeButton("no thanks") { _, _ ->
+                // dismiss
+            }
+
+        }.create().show()
+
     }
 }
