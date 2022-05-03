@@ -66,18 +66,22 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.favorite_item_menu -> {
+                if (!checkAccount()){
+                    showDefaultDialog()
+                }else {
 
-                Toast.makeText(activity,"fave", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_homeFragment_to_favoriteFragment)
+//                    Toast.makeText(activity, "fave", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_homeFragment_to_favoriteFragment)
+                }
                 true
             }
             R.id.comingSoon_item_menu -> {
-                Toast.makeText(activity,"came", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(activity,"came", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_homeFragment_to_comingSoonFragment)
                 true
             }
             R.id.profile_item_menu -> {
-                Toast.makeText(activity,"profile", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(activity,"profile", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
                 true
             }
