@@ -36,28 +36,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-        val boxList = arrayListOf(binding.listVideo1,binding.listVideo2,
-        binding.listVideo3,binding.listVideo4,binding.listVideo5,binding.listVideo6,
-            binding.listVideo7,binding.listVideo8,binding.listVideo9,
-            binding.listVideo10,binding.listVideo11,binding.listVideo12)
-
-
-
-
-        for (i in 0 until boxList.size){
-            boxList[i].txvVideoImage.text = Videos.videos[i].name
-//            boxList[i].videoImage.setImageResource(Videos.videos[i].image)
-            boxList[i].imvVideo.setImageResource(R.drawable.f9 )
-            if (Videos.videos[i].isFave){
-                boxList[i].imvFav.setImageResource(R.drawable.ic_baseline_favorite_red)
-            }else{
-                boxList[i].imvFav.setImageResource(R.drawable.ic_baseline_favorite_24)
-            }
-        }
-
-
-
-
         return binding.root
     }
 
@@ -65,25 +43,26 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
-        val boxList = arrayListOf(binding.listVideo1,binding.listVideo2,
-            binding.listVideo3,binding.listVideo4,binding.listVideo5,binding.listVideo6,
-            binding.listVideo7,binding.listVideo8,binding.listVideo9,
-            binding.listVideo10,binding.listVideo11,binding.listVideo12)
-
-        for (index in 0 until boxList.size){
-            boxList[index].imvFav.setOnClickListener {
-                if (checkAccount()) {
-                    setFavorite(index, boxList[index].imvFav)
-                }else{
-                    Toast.makeText(activity,"you're not registered!",Toast.LENGTH_SHORT).show()
-                }
-                }
-        }
+//        val boxList = arrayListOf(binding.listVideo1,binding.listVideo2,
+//            binding.listVideo3,binding.listVideo4,binding.listVideo5,binding.listVideo6,
+//            binding.listVideo7,binding.listVideo8,binding.listVideo9,
+//            binding.listVideo10,binding.listVideo11,binding.listVideo12)
+//
+//        for (index in 0 until boxList.size){
+//            boxList[index].imvFav.setOnClickListener {
+//                if (checkAccount()) {
+//                    setFavorite(index, boxList[index].imvFav)
+//                }else{
+//                    Toast.makeText(activity,"you're not registered!",Toast.LENGTH_SHORT).show()
+//                }
+//                }
+//        }
     }
 
     private fun initViews() {
         val adapter = VideoAdapter(arrayListOf()){
             video ->
+            checkAccount()
         }
         adapter.submitList(Videos.videos)
         binding.recyclerHome.apply {
@@ -116,16 +95,6 @@ class HomeFragment : Fragment() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun setFavorite(id:Int ,favImage:ImageView){
-        if (Videos.videos[id].isFave){
-            favImage.setImageResource(R.drawable.ic_baseline_favorite_24)
-            Videos.videos[id].isFave = false
-        }else{
-            favImage.setImageResource(R.drawable.ic_baseline_favorite_red)
-            Videos.videos[id].isFave = true
         }
     }
 

@@ -1,18 +1,21 @@
 package com.example.netflixapp
 
 import android.accounts.Account
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.LayoutInflater.*
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.coroutines.coroutineContext
 
 
-typealias ClickHandler = (video : Video) -> Unit
+typealias ClickHandler = (video : Video ) -> Boolean
 
 class VideoAdapter(var dataSet: ArrayList<Video> ,
                    var clickHandler : ClickHandler):
@@ -40,7 +43,7 @@ class VideoAdapter(var dataSet: ArrayList<Video> ,
     }
 
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view){
+    class ViewHolder(val view: View): RecyclerView.ViewHolder(view){
         val txvVideo = view.findViewById<TextView>(R.id.txv_video_image)
         val imvVideo = view.findViewById<ImageView>(R.id.imv_video)
         val imvFavorite = view.findViewById<ImageView>(R.id.imv_fav)
@@ -55,8 +58,10 @@ class VideoAdapter(var dataSet: ArrayList<Video> ,
                 imvFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
             }
 
-            imvFavorite.setOnClickListener { clickHandler(video)
-                setFavorite(video,imvFavorite)
+            imvFavorite.setOnClickListener {
+                if (clickHandler(video))
+                    setFavorite(video,imvFavorite)
+
             }
 
         }
@@ -70,6 +75,7 @@ class VideoAdapter(var dataSet: ArrayList<Video> ,
                 video.isFave = true
             }
         }
+
     }
 
 }
